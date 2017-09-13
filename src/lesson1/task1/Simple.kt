@@ -9,7 +9,7 @@ import java.lang.Math.*
  * Вычисление квадрата вещественного числа
  */
 fun sqr(x: Double) = x * x
-
+fun
 /**
  * Пример
  *
@@ -52,7 +52,7 @@ fun main(args: Array<String>) {
  * Рассчитать время в секундах, прошедшее с начала суток (30035 в данном случае).
  */
 fun seconds(hours: Int, minutes: Int, seconds: Int): Int = TODO()
-
+fun seconds(second: Int, minutes: Int, hours: Int  ): Int = hours*3600+minutes*60+seconds*60
 /**
  * Тривиальная
  *
