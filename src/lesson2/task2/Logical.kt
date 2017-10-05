@@ -2,6 +2,7 @@
 package lesson2.task2
 
 import lesson1.task1.sqr
+import java.lang.Math.sqrt
 
 /**
  * Пример
@@ -42,7 +43,15 @@ fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean =
  * Вернуть true, если утверждение верно
  */
 fun circleInside(x1: Double, y1: Double, r1: Double,
-                 x2: Double, y2: Double, r2: Double): Boolean = TODO()
+                 x2: Double, y2: Double, r2: Double): Boolean {
+
+    if ( ( sqr ( x1 - x2 ) + sqr ( y1 - y2 ) <= sqr ( r2 ) ) &&
+            ( r2 - Math.sqrt( sqr ( x1 - x2 ) + sqr ( y1 - y2 ) ) >= r1 ) )
+        return true
+    else return false
+
+}
+
 
 /**
  * Средняя
@@ -53,4 +62,19 @@ fun circleInside(x1: Double, y1: Double, r1: Double,
  * кирпич 4 х 4 х 4 пройдёт через отверстие 4 х 4.
  * Вернуть true, если кирпич пройдёт
  */
-fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean = TODO()
+fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean {
+    if ( a <= r && b <= s )
+        return true
+    else if ( a<= s && b <= r )
+        return true
+    else if ( a<= s && c <= r )
+        return true
+    else if ( a <= r && c <= s )
+        return true
+    else if ( b <= s && c <= r)
+        return true
+    else if ( b <= r && c <= s )
+        return true
+
+    else return false
+}
