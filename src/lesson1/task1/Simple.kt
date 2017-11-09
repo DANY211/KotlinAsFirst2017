@@ -51,7 +51,6 @@ fun main(args: Array<String>) {
  * Рассчитать время в секундах, прошедшее с начала суток (30035 в данном случае).
  */
 fun seconds(hours: Int, minutes: Int, seconds: Int): Int =
-
         hours * 3600 + minutes * 60 + seconds
 /**
  * Тривиальная
@@ -61,8 +60,8 @@ fun seconds(hours: Int, minutes: Int, seconds: Int): Int =
  * 1 сажень = 3 аршина = 48 вершков, 1 вершок = 4.445 см.
  */
 fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double =
+    vershoks * 4.445 + arshins * 16 * 4.445 + sagenes * 48 * 4.445
 
-        ( vershoks * 4.445 + arshins * 16 * 4.445 + sagenes * 48 * 4.445)
 
 /**
  * Тривиальная
@@ -83,7 +82,7 @@ fun angleInRadian(grad: Int, min: Int, sec: Int): Double =
  */
 fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double =
 
-        Math.sqrt( ( x1 - x2 ) * ( x1 - x2 ) + ( y1 - y2 ) * ( y1 - y2) )
+        Math.sqrt ( ( x1 - x2 ) * ( x1 - x2 ) + ( y1 - y2 ) * ( y1 - y2) )
 
 /**
  * Простая
