@@ -1,4 +1,5 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson2.task1
 
 import lesson1.task1.discriminant
@@ -38,8 +39,8 @@ fun ageDescription(age: Int): String {
     val lastTwo = age % 100
     val lastDigit = age % 10
     return when {
-        ( lastDigit == 0 || lastDigit > 4 || lastTwo in 10..20) -> "$age лет"
-        (lastDigit == 1 ) -> "$age год"
+        (lastDigit == 0 || lastDigit > 4 || lastTwo in 10..20) -> "$age лет"
+        (lastDigit == 1) -> "$age год"
         else -> "$age года"
     }
 }
@@ -101,14 +102,13 @@ fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
  * Найти длину пересечения отрезков AB и CD.
  * Если пересечения нет, вернуть -1.
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int  {
-
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
     when {
         (b == c) -> return 0
-         (c <= b && c >= a && b <= d) -> return b-c
-         (a >= c && a <= d && b >= d) -> return d-a
-         (a <= c && d <= b) -> return d-c
-         (c <= a && b <= d) -> return b-a
-        else -> return-1
+        (c <= b && c >= a && b <= d) -> return b - c
+        (a >= c && a <= d && b >= d) -> return d - a
+        (a <= c && d <= b) -> return d - c
+        (c <= a && b <= d) -> return b - a
+        else -> return -1
     }
 }

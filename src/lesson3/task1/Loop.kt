@@ -1,4 +1,5 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson3.task1
 
 import java.lang.Math.round
@@ -37,7 +38,7 @@ fun isPrime(n: Int): Boolean {
  */
 fun isPerfect(n: Int): Boolean {
     var sum = 1
-    for (m in 2..n/2) {
+    for (m in 2..n / 2) {
         if (n % m > 0) continue
         sum += m
         if (sum > n) break
@@ -70,7 +71,7 @@ fun digitNumber(n: Int): Int {
         b /= 10
         a += 1
 
-    } while ( b != 0 )
+    } while (b != 0)
     return a
 }
 
@@ -81,11 +82,11 @@ fun digitNumber(n: Int): Int {
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
 fun fib(n: Int): Int {
-    if ( n in 1..2 ) return 1
+    if (n in 1..2) return 1
     var result = 0
     var a = 1
     var b = 1
-    for ( i in 3..n ) {
+    for (i in 3..n) {
         result = a + b
         a = b
         b = result
@@ -104,12 +105,11 @@ fun lcm(m: Int, n: Int): Int {
     val prod = m * n
     var a = m
     var b = n
-    while ( a != b ) {
+    while (a != b) {
 
-        if ( a > b ) {
+        if (a > b) {
             a -= b
-        }
-        else {
+        } else {
             b -= a
         }
     }
@@ -123,7 +123,7 @@ fun lcm(m: Int, n: Int): Int {
  */
 fun minDivisor(n: Int): Int {
     var a = 2
-    while ( n % a != 0 ) a++
+    while (n % a != 0) a++
     return a
 }
 
@@ -135,7 +135,7 @@ fun minDivisor(n: Int): Int {
  */
 fun maxDivisor(n: Int): Int {
     var a = n - 1
-    while ( n % a != 0 ) a--
+    while (n % a != 0) a--
     return a
 }
 
@@ -149,7 +149,7 @@ fun maxDivisor(n: Int): Int {
 fun isCoPrime(m: Int, n: Int): Boolean {
     var a = m
     var b = n
-    while ( b != 0 ) {
+    while (b != 0) {
         val c = a % b
         a = b
         b = c
@@ -168,12 +168,13 @@ fun squareBetweenExists(m: Int, n: Int): Boolean {
     val a = sqrt(m.toDouble())
     val b = sqrt(n.toDouble())
     val difference = b.toInt() - a.toInt()
-    if ( m == n ) {
+    if (m == n) {
         val roundM = round(a).toInt()
-        if ( roundM * roundM == m ) return true
+        if (roundM * roundM == m) return true
     }
-    return ( difference >= 1 )
+    return (difference >= 1)
 }
+
 /**
  * Средняя
  *
@@ -185,11 +186,11 @@ fun sin(x: Double, eps: Double): Double {
     var a: Double
     var sin: Double
     var b = 3.0
-    val xx = x % ( 2 * Math.PI )
+    val xx = x % (2 * Math.PI)
     sin = xx
     a = xx
-    while ( Math.abs(a) > eps ) {
-        a = a * xx * xx / b / ( b - 1 ) * ( -1 )
+    while (Math.abs(a) > eps) {
+        a = a * xx * xx / b / (b - 1) * (-1)
         b += 2
         sin += a
     }
@@ -210,9 +211,9 @@ fun cos(x: Double, eps: Double): Double {
     var b = 2.0
     cos = 1.0
     a = 1.0
-    val xx = x % ( 2 * Math.PI )
-    while ( Math.abs(a) > eps ) {
-        a = a * xx * xx / b / ( b - 1 ) * ( -1 )
+    val xx = x % (2 * Math.PI)
+    while (Math.abs(a) > eps) {
+        a = a * xx * xx / b / (b - 1) * (-1)
         b += 2
         cos += a
     }
@@ -229,8 +230,8 @@ fun cos(x: Double, eps: Double): Double {
 fun revert(n: Int): Int {
     var a = 0
     var b = n
-    while ( b > 0 ) {
-        a = ( a * 10 ) + b % 10
+    while (b > 0) {
+        a = (a * 10) + b % 10
         b /= 10
     }
     return a
@@ -249,13 +250,12 @@ fun isPalindrome(n: Int): Boolean {
     do {
         a += b % 10
         b /= 10
+    } while (b != 0)
+        for (i in 0..a.size - 1) {
+            if (a[i] != a[a.size - i - 1]) return false
+        }
+        return true
     }
-    while (b != 0)
-    for ( i in 0..a.size - 1 ) {
-        if ( a[i] != a[a.size - i - 1] ) return false
-    }
-    return true
-}
 
 
 /**
@@ -268,12 +268,11 @@ fun hasDifferentDigits(n: Int): Boolean {
     val a = n % 10
     var b = n
     do {
-        if ( a != b % 10 ) {
+        if (a != b % 10) {
             return true
         }
         b /= 10
-    }
-    while ( b != 0 )
+    } while (b != 0)
     return false
 }
 
@@ -288,12 +287,12 @@ fun squareSequenceDigit(n: Int): Int {
     var a = "1"
     var b = 2
     var c = 0
-    while ( c + a.length < n ) {
+    while (c + a.length < n) {
         c += a.length
-        a = ( b * b ).toString()
+        a = (b * b).toString()
         b += 1
     }
-    return ( a[n - c - 1] - '0' ).toInt()
+    return (a[n - c - 1] - '0').toInt()
 }
 
 
