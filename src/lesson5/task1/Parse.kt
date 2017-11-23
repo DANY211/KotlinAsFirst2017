@@ -70,7 +70,7 @@ fun dateStrToDigit(str: String): String {
     val a = str.split(" ")
     var b = ""
     try {
-        b += twoDigitStr(a[0].toInt()).toString()
+        b += twoDigitStr(a[0].toInt())
         b += when (a[1]) {
             "января" -> ".01."
             "февраля" -> ".02."
@@ -151,8 +151,8 @@ fun flattenPhoneNumber(phone: String): String {
             return ""
         }
     }
-    if (a == "+") return ""
-    else return a
+    return if (a == "+") ""
+    else a
 }
 
 /**
@@ -166,7 +166,7 @@ fun flattenPhoneNumber(phone: String): String {
  * При нарушении формата входной строки или при отсутствии в ней чисел, вернуть -1.
  */
 fun bestLongJump(jumps: String): Int {
-    try {
+    return try {
         val a = jumps.split(" ", "-", "%")
         var b = -1
         for (part in a) {
@@ -174,9 +174,9 @@ fun bestLongJump(jumps: String): Int {
                 b = part.toInt()
             }
         }
-        return b
+        b
     } catch (e: NumberFormatException) {
-        return -1
+        -1
     }
 }
 
@@ -193,7 +193,7 @@ fun bestLongJump(jumps: String): Int {
 fun bestHighJump(jumps: String): Int {
     val a = jumps.split(" ")
     var b = -1
-    for (i in 1..a.size - 1 step 2) {
+    for (i in 1 until a.size step 2) {
         for (j in a[i]) {
             if ((j == '+') && (b < a[i - 1].toInt())) {
                 b = a[i - 1].toInt()
@@ -224,14 +224,15 @@ fun plusMinus(expression: String): Int = TODO()
  * Пример: "Он пошёл в в школу" => результат 9 (индекс первого 'в')
  */
 fun firstDuplicateIndex(str: String): Int {
-    val a = str.toLowerCase().split(" ")
-    var b = -1
-    for (j in 0..a.size - 2) {
-        b++
-        if (a[j] == a[j + 1]) return b
-        b += a[j].length
+    val a = str.toUpperCase().split(' ')
+    var b = 0
+    for (i in 0..a.size - 2) {
+        if (a[i] == (a[i + 1])) {
+            return b
+        }
+        b += a[i].length + 1
     }
-    return b
+    return -1
 }
 
 /**
@@ -245,7 +246,25 @@ fun firstDuplicateIndex(str: String): Int {
  * или пустую строку при нарушении формата строки.
  * Все цены должны быть положительными
  */
-fun mostExpensive(description: String): String = TODO()
+fun mostExpensive(description: String): String {
+    if (description.length == 0) return ""
+    var a = 0.0
+    var b = ""
+    try {
+        val parts = description.split("; ")
+        for (part in parts) {
+            val partt = part.split(" ")
+            if (partt[1].toDouble() >= a) {
+                a = partt[1].toDouble()
+                b = partt[0]
+            }
+        }
+    } catch (e: NumberFormatException) {
+        return ""
+    }
+    return b
+}
+
 
 /**
  * Сложная
