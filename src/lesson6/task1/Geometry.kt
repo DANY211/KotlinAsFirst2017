@@ -77,8 +77,7 @@ data class Circle(val center: Point, val radius: Double) {
     fun distance(other: Circle): Double {
         val a = center.distance(other.center)
         val b = radius + other.radius
-        if (a > b) return a - b
-        else return 0.0
+        return if (a > b) a - b else return 0.0
     }
 
     /**
@@ -98,7 +97,6 @@ data class Circle(val center: Point, val radius: Double) {
 data class Segment(val begin: Point, val end: Point) {
     override fun equals(other: Any?) =
             other is Segment && (begin == other.begin && end == other.end || end == other.begin && begin == other.end)
-
     override fun hashCode() =
             begin.hashCode() + end.hashCode()
 }

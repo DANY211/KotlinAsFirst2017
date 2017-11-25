@@ -151,8 +151,7 @@ fun flattenPhoneNumber(phone: String): String {
             return ""
         }
     }
-    return if (a == "+") ""
-    else a
+    return if (a == "+") "" else a
 }
 
 /**
@@ -248,21 +247,21 @@ fun firstDuplicateIndex(str: String): Int {
  */
 fun mostExpensive(description: String): String {
     if (description.length == 0) return ""
-    var a = 0.0
-    var b = ""
+    var maxvalue = 0.0
+    var maxgood = ""
     try {
         val parts = description.split("; ")
         for (part in parts) {
             val partt = part.split(" ")
-            if (partt[1].toDouble() >= a) {
-                a = partt[1].toDouble()
-                b = partt[0]
+            if (partt[1].toDouble() >= maxvalue) {
+                maxvalue = partt[1].toDouble()
+                maxgood = partt[0]
             }
         }
     } catch (e: NumberFormatException) {
         return ""
     }
-    return b
+    return maxgood
 }
 
 
