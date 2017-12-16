@@ -248,20 +248,20 @@ fun firstDuplicateIndex(str: String): Int {
 fun mostExpensive(description: String): String {
     if (description.length == 0) return ""
     var maxvalue = 0.0
-    var maxgood = ""
+    var name = ""
     try {
         val parts = description.split("; ")
         for (part in parts) {
             val partt = part.split(" ")
             if (partt[1].toDouble() >= maxvalue) {
                 maxvalue = partt[1].toDouble()
-                maxgood = partt[0]
+                name = partt[0]
             }
         }
     } catch (e: NumberFormatException) {
         return ""
     }
-    return maxgood
+    return name
 }
 
 
