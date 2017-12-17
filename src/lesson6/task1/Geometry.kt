@@ -131,7 +131,12 @@ fun diameter(vararg points: Point): Segment {
  * Построить окружность по её диаметру, заданному двумя точками
  * Центр её должен находиться посередине между точками, а радиус составлять половину расстояния между ними
  */
-fun circleByDiameter(diameter: Segment): Circle = TODO()
+fun circleByDiameter(diameter: Segment): Circle {
+     val radius = diameter.begin.distance(diameter.end) / 2
+     val X = (diameter.begin.x + diameter.end.x) / 2
+     val Y = (diameter.begin.y + diameter.end.y) / 2
+     return Circle(Point(X, Y), radius)
+}
 
 /**
  * Прямая, заданная точкой point и углом наклона angle (в радианах) по отношению к оси X.
@@ -170,21 +175,28 @@ class Line private constructor(val b: Double, val angle: Double) {
  *
  * Построить прямую по отрезку
  */
-fun lineBySegment(s: Segment): Line = TODO()
+fun lineBySegment(s: Segment): Line {
+     return if (s.begin.x == s.end.x) Line(s.begin, Math.PI / 2)
+     else Line(s.begin, Math.atan((s.end.y - s.begin.y) / (s.end.x - s.begin.x)))
+}
 
 /**
  * Средняя
  *
  * Построить прямую по двум точкам
  */
-fun lineByPoints(a: Point, b: Point): Line = TODO()
+fun lineByPoints(a: Point, b: Point): Line = lineBySegment(Segment(a, b))
 
 /**
  * Сложная
  *
  * Построить серединный перпендикуляр по отрезку или по двум точкам
  */
-fun bisectorByPoints(a: Point, b: Point): Line = TODO()
+fun bisectorByPoints(a: Point, b: Point): Line {
+    val mid = circleByDiameter(Segment(a, b)).center
+    val angle = (lineByPoints(a, b).angle + Math.PI / 2) % Math.PI
+    return Line(mid, angle)
+}
 
 /**
  * Средняя
