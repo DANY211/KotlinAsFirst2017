@@ -67,34 +67,18 @@ fun main(args: Array<String>) {
  */
 
 fun dateStrToDigit(str: String): String {
-    val a = str.split(" ")
-    var b = ""
-    try {
-        b += twoDigitStr(a[0].toInt())
-        b += when (a[1]) {
-            "января" -> ".01."
-            "февраля" -> ".02."
-            "марта" -> ".03."
-            "апреля" -> ".04."
-            "мая" -> ".05."
-            "июня" -> ".06."
-            "июля" -> ".07."
-            "августа" -> ".08."
-            "сентября" -> ".09."
-            "октября" -> ".10."
-            "ноября" -> ".11."
-            "декабря" -> ".12."
-            else -> return ("")
+    val months = listOf("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря")
+    val parts = str.split(" ")
+    if ((parts.size != 3) || (parts[1] !in months)) return "" else
+        try {
+            val day = parts[0].toInt()
+            val month = months.indexOf(parts[1]) + 1
+            val year = parts[2].toInt()
+            return String.format("%02d.%02d.%d", day, month, year)
+        } catch (e: NumberFormatException) {
+            return ""
         }
-        b += a[2]
-        return b
-    } catch (e: IndexOutOfBoundsException) {
-        return ("")
-    } catch (e: NumberFormatException) {
-        return ("")
-    }
 }
-
 /**
  * Средняя
  *
@@ -103,31 +87,18 @@ fun dateStrToDigit(str: String): String {
  * При неверном формате входной строки вернуть пустую строку
  */
 fun dateDigitToStr(digital: String): String {
+    val months = listOf("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря")
+    val parts = digital.split(".")
+    if (parts.size != 3) return ""
     try {
-        val a = digital.split(".")
-        if (a.size > 3) return ""
-        var b = ""
-        if (a[0].toInt() in 1..31) b += a[0].toInt()
-        b += when (a[1]) {
-            "01" -> " января "
-            "02" -> " февраля "
-            "03" -> " марта "
-            "04" -> " апреля "
-            "05" -> " мая "
-            "06" -> " июня "
-            "07" -> " июля "
-            "08" -> " августа "
-            "09" -> " сентября "
-            "10" -> " октября "
-            "11" -> " ноября "
-            "12" -> " декабря "
-            else -> return ""
-        }
-        b += a[2]
-        return b
+        val day = parts[0].toInt()
+        val month = parts[1].toInt()
+        val year = parts[2].toInt()
+        if (month in 1..12) {
+            val month = months[parts[1].toInt() - 1]
+            return String.format("%d %s %d", day, month, year)
+        } else return ""
     } catch (e: NumberFormatException) {
-        return ""
-    } catch (e: IndexOutOfBoundsException) {
         return ""
     }
 }
@@ -248,20 +219,20 @@ fun firstDuplicateIndex(str: String): Int {
 fun mostExpensive(description: String): String {
     if (description.length == 0) return ""
     var maxvalue = 0.0
-    var name = ""
+    var nameOfmaxvalue = ""
     try {
         val parts = description.split("; ")
         for (part in parts) {
             val partt = part.split(" ")
             if (partt[1].toDouble() >= maxvalue) {
                 maxvalue = partt[1].toDouble()
-                name = partt[0]
+                nameOfmaxvalue = partt[0]
             }
         }
     } catch (e: NumberFormatException) {
         return ""
     }
-    return name
+    return nameOfmaxvalue
 }
 
 

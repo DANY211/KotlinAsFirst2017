@@ -109,7 +109,7 @@ data class Segment(val begin: Point, val end: Point) {
  */
 fun diameter(vararg points: Point): Segment {
     if (points.size < 2)
-        IllegalArgumentException()
+        throw IllegalArgumentException()
     var a = Point(0.0, 0.0)
     var b = Point(0.0, 0.0)
     var c = 0.0

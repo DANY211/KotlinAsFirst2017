@@ -47,7 +47,7 @@ class Tests {
 
     private fun approxEquals(expected: Line, actual: Line, delta: Double): Boolean =
             Math.abs(expected.angle - actual.angle) <= delta &&
-            Math.abs(expected.b - actual.b) <= delta
+                    Math.abs(expected.b - actual.b) <= delta
 
     private fun assertApproxEquals(expected: Line, actual: Line, delta: Double = Math.ulp(10.0)) {
         assertTrue(approxEquals(expected, actual, delta))
@@ -137,7 +137,9 @@ class Tests {
         assertEquals(Segment(p3, p4), diameter(p1, p2, p3, p4))
         assertEquals(Segment(p2, p4), diameter(p1, p2, p4))
         assertEquals(Segment(p1, p4), diameter(p1, p4))
+        assertThrows(IllegalArgumentException::class.java) { throw IllegalArgumentException() }; diameter(p1)
     }
+
 
     @Test
     @Tag("Easy")

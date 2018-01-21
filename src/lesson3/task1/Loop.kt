@@ -180,16 +180,14 @@ fun squareBetweenExists(m: Int, n: Int): Boolean {
  * Нужную точность считать достигнутой, если очередной член ряда меньше eps по модулю
  */
 fun sin(x: Double, eps: Double): Double {
-    var a: Double
-    var sin: Double
-    var b = 3.0
     val xx = x % (2 * Math.PI)
-    sin = xx
-    a = xx
+    var a = xx
+    var sin = xx
+    var b = 3.0
     while (Math.abs(a) > eps) {
         a = a * xx * xx / b / (b - 1) * (-1)
         b += 2
-        sin += a
+        sin = sin.plus(a)
     }
     return sin
 }
@@ -248,11 +246,11 @@ fun isPalindrome(n: Int): Boolean {
         a += b % 10
         b /= 10
     } while (b != 0)
-        for (i in 0..a.size - 1) {
-            if (a[i] != a[a.size - i - 1]) return false
-        }
-        return true
+    for (i in 0..a.size - 1) {
+        if (a[i] != a[a.size - i - 1]) return false
     }
+    return true
+}
 
 
 /**

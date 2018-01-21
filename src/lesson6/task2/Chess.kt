@@ -22,25 +22,12 @@ data class Square(val column: Int, val row: Int) {
      * Для клетки не в пределах доски вернуть пустую строку
      */
     fun notation(): String {
-        var result = ""
-         result += when (column) {
-             1 -> 'a'
-             2 -> 'b'
-             3 -> 'c'
-             4 -> 'd'
-             5 -> 'e'
-             6 -> 'f'
-             7 -> 'g'
-             8 -> 'h'
-             else -> return ""
-        }
-         if (row in 1..8) result += row.toString()
-         else return ""
+        val columnList: String = "abcdefgh"
+        if (inside() == false) return ""
+        else return String.format("%s%d", columnList[column - 1], row)
 
-         return result
     }
 }
-
 /**
  * Простая
  *
@@ -49,28 +36,10 @@ data class Square(val column: Int, val row: Int) {
  * Если нотация некорректна, бросить IllegalArgumentException
  */
 fun square(notation: String): Square {
-     try {
-         if (notation.length != 2) throw IllegalArgumentException("")
-            val x = when (notation[0]) {
-            'a' -> 1
-            'b' -> 2
-            'c' -> 3
-            'd' -> 4
-            'e' -> 5
-            'f' -> 6
-            'g' -> 7
-            'h' -> 8
-            else -> throw IllegalArgumentException("")
-        }
-         if (notation[1] in '1'..'8') {
-            val y = notation[1].toInt() - 48
-            return Square(x, y)
-        }
-         else throw IllegalArgumentException("")
-    }
-      catch (e: IllegalArgumentException) {
-        throw IllegalArgumentException("")
-    }
+    val columnList = listOf<Char>( 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' )
+    val rowList = listOf<Char>('1', '2', '3', '4', '5', '6', '7', '8')
+    if (notation.length != 2 || notation[0] !in columnList || notation[1] !in rowList) throw IllegalArgumentException()
+    else return Square( columnList.indexOf(notation[0] ) + 1, rowList.indexOf(notation[1]) + 1 )
 }
 
 /**
