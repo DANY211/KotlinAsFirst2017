@@ -201,11 +201,9 @@ fun sin(x: Double, eps: Double): Double {
  * Нужную точность считать достигнутой, если очередной член ряда меньше eps по модулю
  */
 fun cos(x: Double, eps: Double): Double {
-    var a: Double
-    var cos: Double
+    var a = 1.0
+    var cos = 1.0
     var b = 2.0
-    cos = 1.0
-    a = 1.0
     val xx = x % (2 * Math.PI)
     while (Math.abs(a) > eps) {
         a = a * xx * xx / b / (b - 1) * (-1)
